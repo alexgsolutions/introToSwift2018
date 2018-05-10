@@ -12,14 +12,16 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var pokemonList = [Pokemon]()
     let queryService = QueryService()
+    let appData = AppData.shared
+    var pokemonList: [Pokemon] {
+        return appData.pokemonList
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Pokedex"
-        queryService.fetchOriginalPokemon { [weak self] (pokemon, error) in
-            self?.pokemonList = pokemon ?? []
+        queryService.fetchOriginalPokemon { [weak self] (_, _) in
             self?.tableView.reloadData()
         }
     }
@@ -32,9 +34,28 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+    
+        let cell = tableView.dequeueReusableCell(withIdentifier: "pokedexCell", for: indexPath) as! PokedexTableViewCell
         let pokemon = pokemonList[indexPath.row]
-        cell.textLabel?.text = pokemon.name
+        
+        cell.nameLabel.text = pokemon.name.firstLetterCapitalized
+        cell.pokedexNumberLabel.text = pokemon.imageURLString
+        
         return cell
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        let pokemon = pokemonList[indexPath.row]
+        
+        queryService.fetchPokemonDetailsWith(pokemon.url) { [weak self] (success, error) in
+            if success {
+                self?.tableView.reloadData()
+            }
+        }
     }
 }
