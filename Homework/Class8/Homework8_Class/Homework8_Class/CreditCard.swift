@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CreditCard {
+struct CreditCard: Codable {
     var firstName: String = ""
     var lastName: String = ""
     var cardNumber: String = ""
@@ -16,12 +16,27 @@ struct CreditCard {
     var securityCode: String = ""
     var address: Address = Address()
 }
+
 extension CreditCard {
     
-    var areDetailsFilledOut: Bool {
+    var getFullName: String {
+        return "\(firstName) \(lastName)"
+    }
+   
+    var getLastFourDigitFormat: String {
+        return "\(cardNumber.suffix(4))"
+    }
+    var getFirstFourDigit: String {
+        return "\(cardNumber)"
+    }
+   
+    var getCreditCarInfo: String {
+        return "***\(getLastFourDigitFormat), expires \(expirationDate)"
+    }
+    var isDetailsFilledOut: Bool {
         return !firstName.isEmpty && !expirationDate.isEmpty && !securityCode.isEmpty
     }
-    
+
     mutating func updateCardDetail(_ type: CardDetailSectionCellType, _ value: String) -> CreditCard {
         switch type {
         case .firstName:
@@ -35,7 +50,6 @@ extension CreditCard {
         case .securityCode:
             self.securityCode = value
         }
-        
         return self
     }
     
@@ -47,8 +61,10 @@ extension CreditCard {
             self.address.state = value
         case .zipCode:
             self.address.zipCode = value
-        default:
-            break
+        case .addressOne:
+            self.address.addressOne = value
+        case .addressTwo:
+            self.address.addressTwo = value
         }
         return self
     }
