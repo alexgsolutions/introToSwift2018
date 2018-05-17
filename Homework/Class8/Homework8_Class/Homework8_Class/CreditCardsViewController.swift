@@ -119,6 +119,7 @@ extension CreditCardsViewController: UITableViewDelegate,UIAlertViewDelegate {
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (action:UIAlertAction) in
             print("You've pressed delete");
             self.creditCards.remove(at: index)
+            saveCreditCards(self.creditCards)
             self.tableView.reloadData()
         }
         
