@@ -8,46 +8,21 @@
 
 import Foundation
 
-enum NumberOfPlayers: Int {
-    case two = 2
-    case three = 3
-    case four = 4
-    
-    var txt: String {
-        switch self {
-        case .two:
-            return "Two"
-        case .three:
-            return "Three"
-        case .four:
-            return "Four"
-        }
-    }
-}
-
-enum PlayerToConfigure: Int {
-    case one = 1
-    case two = 2
-    case three = 3
-    case four = 4
-    case allConfigured = 5
-    
-    var teamMember: String {
-        return self.rawValue < 3 ? "A" : "B"
-    }
-}
-
 struct GameModel {
     var numberOfPlayers: NumberOfPlayers = .two
     var firstPlayer: String = ""
     var secondPlayer: String = ""
     var thirdPlayer: String = ""
     var fourthPlayer: String = ""
-    
-    let nameOf = "Name of "
+    var winningScore: Int = 500
+    var withPrizes: Bool = true
 }
 
 extension GameModel {
+    
+    private var nameOf: String {
+        return "Name of "
+    }
     
     private var isTeamPlay: Bool {
         return numberOfPlayers == .four
@@ -82,21 +57,6 @@ extension GameModel {
             return hasMoreThanThreePlayers ? .four : .allConfigured
         case .four, .allConfigured:
             return .allConfigured
-        }
-    }
-    
-    mutating func updatePlayerName(_ name: String, _ player: PlayerToConfigure) {
-        switch player {
-        case .one:
-            firstPlayer = name
-        case .two:
-            secondPlayer = name
-        case .three:
-            thirdPlayer = name
-        case .four:
-            fourthPlayer = name
-        case .allConfigured:
-            break
         }
     }
 }
