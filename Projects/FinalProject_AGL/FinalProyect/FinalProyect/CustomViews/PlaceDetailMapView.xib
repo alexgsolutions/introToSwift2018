@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PlaceDetailMapView" customModule="FinalProyect" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="275" height="72"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CKf-ff-pfA">
+                    <rect key="frame" x="54" y="10.5" width="213" height="51.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyQ-co-9g2">
+                            <rect key="frame" x="0.0" y="0.0" width="35.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.22352941179999999" green="0.2784313725" blue="0.56470588239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIO-EO-C0p">
+                            <rect key="frame" x="0.0" y="21" width="31" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GHP-fL-aGn">
+                            <rect key="frame" x="0.0" y="39.5" width="71" height="12"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Región:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzn-ny-JvA">
+                                    <rect key="frame" x="0.0" y="0.0" width="36.5" height="12"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uu-XD-xdH">
+                                    <rect key="frame" x="44.5" y="0.0" width="26.5" height="12"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="police-station-100" translatesAutoresizingMaskIntoConstraints="NO" id="7SV-9c-gxL">
+                    <rect key="frame" x="8" y="17" width="38" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="TVA-VH-w2o"/>
+                        <constraint firstAttribute="width" secondItem="7SV-9c-gxL" secondAttribute="height" multiplier="1:1" id="kLf-Xp-e2e"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="7SV-9c-gxL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1zZ-Mc-VAr"/>
+                <constraint firstItem="CKf-ff-pfA" firstAttribute="leading" secondItem="7SV-9c-gxL" secondAttribute="trailing" constant="8" id="6pA-Kz-mlC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="CKf-ff-pfA" secondAttribute="trailing" constant="8" id="NkL-Bx-YZ8"/>
+                <constraint firstItem="CKf-ff-pfA" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="hB0-Ux-yeD"/>
+                <constraint firstItem="7SV-9c-gxL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="rGU-YJ-6rD"/>
+                <constraint firstItem="CKf-ff-pfA" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="71:24" id="wqK-CN-zqA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="detailCityLabel" destination="HIO-EO-C0p" id="ODq-g1-vGn"/>
+                <outlet property="detailRegionLabel" destination="8Uu-XD-xdH" id="dN6-ST-Xyp"/>
+                <outlet property="detailTitleLabel" destination="eyQ-co-9g2" id="CLi-FG-9Qy"/>
+            </connections>
+            <point key="canvasLocation" x="29" y="-558"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="police-station-100" width="100" height="100"/>
+    </resources>
+</document>
