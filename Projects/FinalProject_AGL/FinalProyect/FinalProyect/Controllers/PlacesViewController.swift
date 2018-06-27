@@ -21,7 +21,7 @@ class PlacesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        title = AppConfig.appName
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Map", style: .done, target: self, action: #selector(showMap))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Mapa", style: .done, target: self, action: #selector(showMap))
         configureBackButton()
         configureLeftButtonStyle()
         setUpRefreshControl()
@@ -43,7 +43,7 @@ class PlacesViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
         refreshControl?.tintColor = AppConfig.ThemeFontColor
         //refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...", attributes: attribute_set)
-        refreshControl?.attributedTitle = NSAttributedString(string: "Fetching Data ...")
+        refreshControl?.attributedTitle = NSAttributedString(string: "Buscando Data ...")
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {

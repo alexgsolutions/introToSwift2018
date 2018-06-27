@@ -25,11 +25,11 @@ enum AppConfig {
     }
     enum ScreenTitlesNames {
         static let mainScreen = AppConfig.appName
-        static let placeDetail = "Detalle"
-        static let placesMap = "Places"
-        static let favorites = "Favorites"
-        static let moreInfo = "Information"
-        static let addNewEntity  = "Add Entity"
+        static let placeDetail = "Detalles"
+        static let placesMap = "Lugares"
+        static let favorites = "Favoritos"
+        static let moreInfo = "Información"
+        static let addNewEntity  = "Nueva Entidad"
     }
 }
 

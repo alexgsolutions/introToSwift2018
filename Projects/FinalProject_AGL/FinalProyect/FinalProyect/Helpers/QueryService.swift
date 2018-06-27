@@ -35,26 +35,56 @@ extension QueryService {
     func getAllPlaces(completion: @escaping SuccessResult) {
         Alamofire.request(APIResource.baseURL).responseJSON { (response) in
             //debugPrint(response)
-            let decode = JSONDecoder()
-            let placesResponse =  try! decode.decode([Places].self, from: response.data!)
-            self.appData.updatePlacesList(with: placesResponse)
-            //print(places)
-             completion(true,self.errorMessage)
+            switch response.result {
+            case .success:
+                print("Validation Successful")
+                let decode = JSONDecoder()
+                do {
+                    let placesResponse =  try decode.decode([Places].self, from: response.data!)
+                    self.appData.updatePlacesList(with: placesResponse)
+                    //print(places)
+                    completion(true,self.errorMessage)
+                } catch {
+                    print("error loading cuarteles data from Gov API")
+                    self.errorMessage = "En estos momentos el servicio de cuarteles no se encuentra disponible."
+                    completion(false,self.errorMessage)
+                }
+            case .failure(let error):
+                print(error)
+                self.errorMessage = "En estos momentos el servicio de cuarteles no se encuentra disponible."
+                completion(false,self.errorMessage)
+            }
+           
+          
         }
        
     }
     
-    func getCrimeStatisticByPlace(_ placeCity: String, completion: @escaping SuccessResult) {
+    func getCrimeStatisticByPlace(_ placeCity: String, completion: @escaping SuccessResult)  {
         let fixSearchCity = placeCity.folding(options: .diacriticInsensitive, locale: .current)
         let sqlQuery = NSURL(string: "https://data.pr.gov/resource/pzaz-tkx9.json?%24query=SELECT%20delitos_code%2C%20Count(*)%20as%20count%20where%20area_policiaca%20%3D%20%22\(fixSearchCity.fixToCamelCase)%22%20GROUP%20BY%20delitos_code%20ORDER%20BY%20count%20DESC")! as URL
         
         Alamofire.request(sqlQuery).responseJSON { (response) in
             debugPrint(response)
-            let decode = JSONDecoder()
-            let crimeStatisticResponse =  try! decode.decode([CrimeStatistic].self, from: response.data!)
-            self.appData.updateCrimeStatisticList(with: crimeStatisticResponse)
-            //print(crimeStatisticResponse)
-            completion(true,self.errorMessage)
+            switch response.result {
+            case .success:
+                let decode = JSONDecoder()
+                do {
+                    let crimeStatisticResponse =  try decode.decode([CrimeStatistic].self, from: response.data!)
+                    self.appData.updateCrimeStatisticList(with: crimeStatisticResponse)
+                    //print(crimeStatisticResponse)
+                    completion(true,self.errorMessage)
+                } catch {
+                    print("Error decode Crime Statistics Data to CrimeStatistic Model")
+                    self.errorMessage = "Error decode Crime Statistics Data to CrimeStatistic Model"
+                    completion(false,self.errorMessage)
+                }
+            case .failure(let error):
+                print(error)
+                self.errorMessage = "En estos momentos el servicio de cuarteles no se encuentra disponible."
+                completion(false,self.errorMessage)
+            }
+           
         }
         
     }

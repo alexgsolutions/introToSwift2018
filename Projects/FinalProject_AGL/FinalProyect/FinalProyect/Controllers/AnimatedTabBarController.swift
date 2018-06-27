@@ -28,11 +28,16 @@ class AnimatedTabBarController: UITabBarController {
             self.secondItemImageView.transform = CGAffineTransform.identity
             
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseInOut, animations: { () -> Void in
-                
-                let rotation = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
+                let rotation = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
                 self.secondItemImageView.transform = rotation
                 
             }, completion: nil)
+            UIView.animate(withDuration: 0.7, delay: 0.45, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseInOut, animations: { () -> Void in
+                let rotation = CGAffineTransform(rotationAngle: CGFloat.pi * 2.0)
+                self.secondItemImageView.transform = rotation
+                
+            }, completion: nil)
+            
             
         }
     }

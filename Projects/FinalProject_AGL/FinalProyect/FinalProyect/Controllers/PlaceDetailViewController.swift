@@ -20,6 +20,8 @@ class PlaceDetailViewController: UIViewController,CAAnimationDelegate {
     var crimeDataList: [CrimeStatistic] {
         return appData.crimeList
     }
+     var emptyView: EmptyView!
+    
     
     //Outlet
     
@@ -44,7 +46,7 @@ class PlaceDetailViewController: UIViewController,CAAnimationDelegate {
         title = AppConfig.ScreenTitlesNames.placeDetail
         buildingNameLabel.text = "\(place?.edificios ?? "No Data") de \(place?.municipio ?? "")"
         buildingAddressLabel.text = place?.direcci_n_f_sica
-        crimeStatTitleLabel.text = "Crime Statistics in \(place?.regi_n?.fixToCamelCase ?? "Zone") region"
+        crimeStatTitleLabel.text = "Crimenes total región de \(place?.regi_n?.fixToCamelCase ?? "Puerto Rico")"
         setUpMap()
         loadCrimeData()
         applyNavigationShadow()
@@ -56,6 +58,23 @@ class PlaceDetailViewController: UIViewController,CAAnimationDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         setUpFavoriteImage()
+    }
+    // MARK: empty view methods
+    func showEmptyView() {
+        emptyView = EmptyView()
+        emptyView.emptyMessageLabel.text = "No se encontró data de crimenes para esta región."
+        emptyView.tag = 100
+        self.tableView.addSubview(emptyView)
+    }
+    
+    func hideEmptyView() {
+        print("Start remove subview")
+        if let viewWithTag = self.tableView.viewWithTag(100) {
+            viewWithTag.removeFromSuperview()
+            print("subview removed!!")
+        }else{
+            print("No!")
+        }
     }
     
     private func setUpFavoriteImage() {
@@ -70,6 +89,11 @@ class PlaceDetailViewController: UIViewController,CAAnimationDelegate {
     private func loadCrimeData() {
         if let city = place?.regi_n {
             queryService.getCrimeStatisticByPlace(city, completion: { [weak self](_, _) in
+                if self?.crimeDataList.count == 0 {
+                    self?.showEmptyView()
+                }else {
+                    self?.hideEmptyView()
+                }
                 self?.tableView.reloadData()
             })
         }

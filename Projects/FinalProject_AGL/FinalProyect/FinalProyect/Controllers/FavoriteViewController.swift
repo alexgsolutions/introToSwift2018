@@ -44,7 +44,7 @@ class FavoriteViewController: UITableViewController {
     // MARK: empty view methods
     func showEmptyView() {
         emptyView = EmptyView()
-        emptyView.emptyMessageLabel.text = "Esta muy solo aqui. Puedes añadir lugares marcando el corazón en la pantalla de detalle."
+        emptyView.emptyMessageLabel.text = "Esta muy solo por aquí. Puedes añadir lugares marcando el corazón en la pantalla de detalles."
         emptyView.tag = 100
         self.tableView.addSubview(emptyView)
     }
@@ -120,16 +120,16 @@ extension FavoriteViewController {
     private func deleteEntity(_ index: IndexPath) {
         let place = favoritesPlaces[index.row]
         
-        let alertController = UIAlertController(title: AppConfig.appName, message: "Delete \(place.edificios ?? "this entity")?", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: AppConfig.appName, message: "¿Borrar \(place.edificios ?? "esta entidad")?", preferredStyle: .actionSheet)
         
-        let delete = UIAlertAction(title: "Delete", style: .destructive) { (action:UIAlertAction) in
+        let delete = UIAlertAction(title: "Borrar", style: .destructive) { (action:UIAlertAction) in
             print("You've pressed default");
             self.favoritesPlaces.remove(at: index.row)
             saveToFavoritePlaces(self.favoritesPlaces)
             self.loadFavoritesData()
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action:UIAlertAction) in
+        let cancel = UIAlertAction(title: "Cancelar", style: .default) { (action:UIAlertAction) in
             print("You've pressed cancel");
         }
         
